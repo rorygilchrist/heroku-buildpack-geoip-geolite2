@@ -29,6 +29,8 @@ mkdir -p "$LIBMAXMINDDB_CACHE_DIST_DIR"
 
 echo "       Downloading GeoLite2 City and Country data"
 
+echo "https://download.maxmind.com/app/geoip_download?edition_id=$GEOLITE2_CITY_TARBALL_FILENAME&license_key=$HEROKU_KEY&suffix=tar.gz"
+
 wget -Nq -P "$GEOIP_CACHE_DIR" "https://download.maxmind.com/app/geoip_download?edition_id=$GEOLITE2_CITY_TARBALL_FILENAME&license_key=$HEROKU_KEY&suffix=tar.gz" 
 wget -Nq -P "$GEOIP_CACHE_DIR" "https://download.maxmind.com/app/geoip_download?edition_id=$GEOLITE2_COUNTRY_TARBALL_FILENAME&license_key=$HEROKU_KEY&suffix=tar.gz"
 
