@@ -47,11 +47,11 @@ mkdir -p "$LIBMAXMINDDB_CACHE_DIST_DIR"
 
 echo "       Downloading GeoLite2 City and Country data"
 
-wget -Nq -P "$GEOIP_CACHE_DIR" "https://download.maxmind.com/app/geoip_download?edition_id=$GEOLITE2_CITY_TARBALL_FILENAME&license_key=$MAXMIND_KEY&suffix=tar.gz" 
-wget -Nq -P "$GEOIP_CACHE_DIR" "https://download.maxmind.com/app/geoip_download?edition_id=$GEOLITE2_COUNTRY_TARBALL_FILENAME&license_key=$MAXMIND_KEY&suffix=tar.gz"
+wget -Nq -P "$GEOIP_CACHE_DIR" "https://download.maxmind.com/app/geoip_download?edition_id=$GEOLITE2_CITY_TARBALL_FILENAME&license_key=$MAXMIND_KEY&suffix=tar.gz" -O "$GEOLITE2_CITY_TARBALL_FILENAME"
+wget -Nq -P "$GEOIP_CACHE_DIR" "https://download.maxmind.com/app/geoip_download?edition_id=$GEOLITE2_COUNTRY_TARBALL_FILENAME&license_key=$MAXMIND_KEY&suffix=tar.gz" -O "$GEOLITE2_CITY_TARBALL_FILENAME"
 
-tar -xvf "$GEOIP_CACHE_DIR/$GEOLITE2_CITY_TARBALL_FILENAME".tar.gz --directory "$BUILD_DIST_SHARE_DIR" --no-anchored --strip-components=1 "$GEOLITE2_CITY_FILENAME"
-tar -xvf "$GEOIP_CACHE_DIR/$GEOLITE2_COUNTRY_TARBALL_FILENAME".tar.gz --directory "$BUILD_DIST_SHARE_DIR" --no-anchored --strip-components=1 "$GEOLITE2_COUNTRY_FILENAME"
+tar -xvf "$GEOIP_CACHE_DIR/$GEOLITE2_CITY_TARBALL_FILENAME" --directory "$BUILD_DIST_SHARE_DIR" --no-anchored --strip-components=1 "$GEOLITE2_CITY_FILENAME"
+tar -xvf "$GEOIP_CACHE_DIR/$GEOLITE2_COUNTRY_TARBALL_FILENAME" --directory "$BUILD_DIST_SHARE_DIR" --no-anchored --strip-components=1 "$GEOLITE2_COUNTRY_FILENAME"
 
 if [ -f "$LIBMAXMINDDB_CACHE_VERSION_FILE" ] && grep -Fxq "$LIBMAXMINDDB_VERSION" "$LIBMAXMINDDB_CACHE_VERSION_FILE"; then
     echo "       Using cached build of libmaxminddb-$LIBMAXMINDDB_VERSION"
